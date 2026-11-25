@@ -30,7 +30,7 @@ helm install eg oci://docker.io/envoyproxy/gateway-helm --version v0.0.0-latest 
 
 ```
 
-> A newer version may exist. Check the current install docs: https://gateway.envoyproxy.io/latest/install/install-helm/
+> A newer version may exist. Check the [current install docs](https://gateway.envoyproxy.io/latest/install/install-helm/).
 
 ---
 
@@ -155,7 +155,7 @@ curl -H "Host: www.example.com" http://<node-ip>:31234/
 
 You should see the nginx welcome page. The `Host` header is required because the route matches on the hostname. To use the name in a browser, add this line to `/etc/hosts`:
 
-```
+```bash
 <node-ip> www.example.com
 ```
 
@@ -163,7 +163,7 @@ You should see the nginx welcome page. The `Host` header is required because the
 
 ## How the pieces fit
 
-```
+```bash
 Client -> NodePort -> Envoy proxy pod -> HTTPRoute rules -> nginx-service:8080 -> nginx pods
           (Step 4)    (Step 5 Gateway)    (Step 6)
 ```
@@ -173,7 +173,7 @@ Client -> NodePort -> Envoy proxy pod -> HTTPRoute rules -> nginx-service:8080 -
 ## Troubleshooting
 
 | Problem | What to check |
-|---|---|
+| --- | --- |
 | Gateway not `Programmed` | `kubectl describe gateway eg-gateway` |
 | `curl` returns 404 | The `Host` header does not match `hostnames` in the HTTPRoute |
 | `curl` returns 503 | `kubectl get endpoints nginx-service` is empty, so the selector matches no pods |
